@@ -394,7 +394,7 @@ df.plot(figsize=(20,6))
 
 
     
-![png](assets/images/2021-09-04-helen-dh-dataset-import-output_14_1.png)
+![png](/assets/images/2021-09-04-helen-dh-dataset-import-output_14_1.png)
     
 
 
@@ -412,7 +412,7 @@ df.loc[(df.index > '2019-01-01') & (df.index < '2019-03-01')].plot(figsize=(20,6
 
 
     
-![png](assets/images/2021-09-04-helen-dh-dataset-import-output_15_1.png)
+![png](/assets/images/2021-09-04-helen-dh-dataset-import-output_15_1.png)
     
 
 
