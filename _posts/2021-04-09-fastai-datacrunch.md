@@ -1,6 +1,7 @@
 ---
 title: fast.ai model development on DataCrunch.io
 tags: AI, fast.ai, datacrunch.io, linux, server 
+layout: post
 ---
 
 # fast.ai model development on DataCrunch.io
