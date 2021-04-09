@@ -52,7 +52,7 @@ The step 3 in the guide considers creating an SSH key, we already did that. For 
 ### Windows subsystem for Linux (WSL) ssh-agent forwarding
 
 To allow SSH key forwarding, that is accessing GitHub on the remote server, while the private SSH key only resides on local computer,
-start `ssh-agent`.
+configure `ssh-agent`.
 
 For WSL, add following to `~/.bashrc` (reference: [SciVision](https://www.scivision.dev/ssh-agent-windows-linux/)) 
 ```sh
@@ -67,12 +67,16 @@ fi
 
 Then either start a new WSL window or run `. ~/.bashrc`.
 
-Add SSH key to `ssh-agent` with
+One can add SSH keys to `ssh-agent` with
 ```sh
-$ ssh-add ~/.ssh/id_ed25519
+$ ssh-add -t 3600 ~/.ssh/id_ed25519
+Enter passphrase for /home/mkouhia/.ssh/id_ed25519:
+Identity added: /home/mkouhia/.ssh/id_ed25519 (mkouhia@hostname)
+Lifetime set to 3600 seconds
 ```
+Here, parameter `-t life` sets how many seconds the identity is stored with the agent.
 
-Now, you can verify whether you can access github with the stored keys locally:
+Now, you can verify whether you can access github with the stored key:
 ```sh
 $ ssh -T git@github.com
 Hi mkouhia! You've successfully authenticated, but GitHub does not provide shell access.
@@ -84,24 +88,44 @@ More reading:
 - https://www.scivision.dev/ssh-agent-windows-linux/
 
 
-## Steps for each session
+## Steps at the start of each session
 
 1. Login to DataCrunch via website, https://cloud.datacrunch.io/signin
-2. Deploy an new server, https://cloud.datacrunch.io/dashboard/deploy-server and take note of its IP address
-3. Connect from WSL shell https://datacrunch.io/docs/connecting-via-ssh/
+2. Deploy an new server, (see [guide](https://cloud.datacrunch.io/dashboard/deploy-server)) and take note of its **IP address**.
+   Remember to check the checkbox next to the SSH public key you have added to DataCrunch. This will allow SSH access to the server
+   with the key you have on the local computer.
+3. Connect from local Windows WSL shell
 
-    On local computer, add SSH key to agent and connect to server with SSH agent forwarding (the flag `-A`)
+    On local computer, add SSH key to agent and connect to server with SSH agent forwarding (the flag `-A`), with the actual username _user_
     ```sh
-    $ ssh-add -L
-    $ ssh -A user@<ip>
+    $ ssh-add -t 3600 ~/.ssh/id_ed25519
+    $ ssh -A user@<IP address>
     ```
-4. Clone working repository from GitHub to DataCrunch server instance, using the SSH key on local computer (!)
+    Now you can check that the SSH agent is forwarding the identity to GitHub
+    ```sh
+    $ ssh -T git@github.com
+    Hi mkouhia! You've successfully authenticated, but GitHub does not provide shell access.
+    ```
+4. Clone working repository from GitHub to DataCrunch server instance, using the authentication key provided by SSH agent
     ```sh
     $ git clone <repository address>
     ```
-5. Switch to DataCrunch web UI, start Jupyter notebooks, start developing
+4. _(optional)_ If you uploaded data to Dropbox or someplace else at the end of previous session, download and extract them in the repository folder
+   ```sh
+   $ cd <repository folder>
+   $ curl -L https://github.com/dropbox/dbxcli/releases/download/v3.0.0/dbxcli-linux-amd64 -o dbxcli
+   $ ./dbxcli account
+   1. Go to https://www.dropbox.com/1/oauth2/authorize?client_id=07o23gulcj8qi69&response_type=code&state=state
+   2. Click "Allow" (you might have to log in first).
+   3. Copy the authorization code.
+   Enter the authorization code here:
+   $ ./dbxcli ls <project folder on Dropbox>
+   $ ./dbxcli get <project folder>/<date>_export.pkl.gz export.pkl.gz
+   $ gzip -d export.pkl.gz
+   ```
+6. Switch to [DataCrunch web UI](https://cloud.datacrunch.io/dashboard/server-overview), start Jupyter notebooks, start developing
 
-## At the end of session
+## At the end of each session
 
 1. Save notebooks and other files, commit to version control; open Terminal from server Jupyter interface and do
     ```sh
@@ -109,19 +133,21 @@ More reading:
     $ git commit -m "<message>"
     $ git push
     ```
-2. (optional) If you developed a deep learning model and exported it to `export.pkl`, you will most likely want to keep the binary file out of git.
+2. _(optional)_ If you developed a deep learning model and exported it to `export.pkl`, you will most likely want to keep the binary file out of git.
    For now, I'll upload it to Dropbox:
      ```sh
      $ gzip export.pkl
      $ curl -L https://github.com/dropbox/dbxcli/releases/download/v3.0.0/dbxcli-linux-amd64 -o dbxcli
      $ chmod a+x dbxcli
      $ ./dbxcli account
-     $ ./dbxcli put export.pkl.gz $(date -I)_export.pkl.gz
+     $ ./dbxcli put export.pkl.gz <project folder>/$(date -I)_export.pkl.gz
+     $ gzip -d export.pkl.gz
      ```
    Here we compressed the file, downloaded Dropbox command line client, authenticated with Dropbox (follow instructions after `./dbxcli account`)
    and uploaded the file, with a timestamp.
 5. *Delete* DataCrunch server on the DataCrunch UI, in order to stop billing.
 
-Further references:
-- Data version control https://dvc.org/ seems quite a promising framework. I'll have to take a look at it some time later.
 
+## Further notes
+Data version control (https://dvc.org/) seems quite a promising framework for keeping track of models and data.
+I'll have to take a look at it some time later.
