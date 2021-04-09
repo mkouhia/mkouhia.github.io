@@ -1,1 +1,24 @@
+title: mkouhia
+author:
+  name: Mikko Kouhia
+  email: mkouhia@iki.fi
+description: >
+  A collection of technical notes, that may be of use sometime later
+  or to some other person.
+
 theme: minima
+
+# Minima: show excerpts in the frontpage
+show_excerpts: true
+
+minima:
+  date_format: "%Y-%m-%d"
+  
+  social_links:
+    github: mkouhia
+    linkedin: mkouhia
+
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+#header_pages:
+# - about.md
