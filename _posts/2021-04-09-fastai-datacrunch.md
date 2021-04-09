@@ -109,19 +109,19 @@ More reading:
     ```sh
     $ git clone <repository address>
     ```
-4. _(optional)_ If you uploaded data to Dropbox or someplace else at the end of previous session, download and extract them in the repository folder
-      ```sh
-      $ cd <repository folder>
-      $ curl -L https://github.com/dropbox/dbxcli/releases/download/v3.0.0/dbxcli-linux-amd64 -o dbxcli
-      $ ./dbxcli account
-      1. Go to https://www.dropbox.com/1/oauth2/authorize?client_id=07o23gulcj8qi69&response_type=code&state=state
-      2. Click "Allow" (you might have to log in first).
-      3. Copy the authorization code.
-      Enter the authorization code here:
-      $ ./dbxcli ls <project folder on Dropbox>
-      $ ./dbxcli get <project folder>/<date>_export.pkl.gz export.pkl.gz
-      $ gzip -d export.pkl.gz
-      ```
+5. _(optional)_ If you uploaded data to Dropbox or someplace else at the end of previous session, download and extract them in the repository folder
+    ```sh
+    $ cd <repository folder>
+    $ curl -L https://github.com/dropbox/dbxcli/releases/download/v3.0.0/dbxcli-linux-amd64 -o dbxcli
+    $ ./dbxcli account
+    1. Go to https://www.dropbox.com/1/oauth2/authorize?client_id=07o23gulcj8qi69&response_type=code&state=state
+    2. Click "Allow" (you might have to log in first).
+    3. Copy the authorization code.
+    Enter the authorization code here:
+    $ ./dbxcli ls <project folder on Dropbox>
+    $ ./dbxcli get <project folder>/<date>_export.pkl.gz export.pkl.gz
+    $ gzip -d export.pkl.gz
+    ```
 6. Switch to [DataCrunch web UI](https://cloud.datacrunch.io/dashboard/server-overview), start Jupyter notebooks, start developing
 
 ## At the end of each session
