@@ -1,8 +1,8 @@
 ---
+title: "Hello, World!"
+date: 2021-04-09
 layout: post
 ---
-
-# Hello, World!
 
 **Hello world**, this is my first Jekyll blog post.
 
