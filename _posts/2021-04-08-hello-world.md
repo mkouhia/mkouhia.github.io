@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 # Hello, World!
 
 **Hello world**, this is my first Jekyll blog post.
