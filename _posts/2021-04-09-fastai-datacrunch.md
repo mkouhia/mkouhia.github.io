@@ -110,6 +110,7 @@ More reading:
     $ git clone <repository address>
     ```
 5. _(optional)_ If you uploaded data to Dropbox or someplace else at the end of previous session, download and extract them in the repository folder
+
     ```sh
     $ cd <repository folder>
     $ curl -L https://github.com/dropbox/dbxcli/releases/download/v3.0.0/dbxcli-linux-amd64 -o dbxcli
@@ -122,6 +123,7 @@ More reading:
     $ ./dbxcli get <project folder>/<date>_export.pkl.gz export.pkl.gz
     $ gzip -d export.pkl.gz
     ```
+
 6. Switch to [DataCrunch web UI](https://cloud.datacrunch.io/dashboard/server-overview), start Jupyter notebooks, start developing
 
 ## At the end of each session
