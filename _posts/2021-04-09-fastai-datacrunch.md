@@ -4,8 +4,6 @@ tags: AI, fast.ai, datacrunch.io, linux, server
 layout: post
 ---
 
-# fast.ai model development on DataCrunch.io
-
 For developing and training deep learning models, a GPU-enabled computing resource is a must.
 I did not even bother trying on my laptop, but went straight ahead to using cloud resources as recommended by
 [fast.ai tutorial](https://course.fast.ai/). I started first using [Paperspace Gradient](https://gradient.paperspace.com/)
