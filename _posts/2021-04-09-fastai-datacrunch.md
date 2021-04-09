@@ -148,5 +148,5 @@ More reading:
 
 
 ## Further notes
-Data version control ([https://dvc.org/]) seems quite a promising framework for keeping track of models and data.
+Data version control ([https://dvc.org/](https://dvc.org/)) seems quite a promising framework for keeping track of models and data.
 I'll have to take a look at it some time later.
