@@ -10,7 +10,8 @@ hard to get as a researcher. I'm leaving here some notes on how to read the data
 See the announcement and link to dataset [here](https://www.helen.fi/helen-oy/vastuullisuus/ajankohtaista/avoindata),
 in Finnish.
 
-In this notebook, we read in the Helen DH dataset and fix their timestamps.
+In this post, we read in the Helen DH dataset and fix their timestamps.
+This content is also in Jupyter notebook format [in GitHub](https://github.com/mkouhia/helen-dh-generation-modelling/blob/main/notebooks/2021-04-09-helen-dh-dataset-import.ipynb)
 
 First, we request content from the server (link as of 2021-04-09) and inspect the data.
 
