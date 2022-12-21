@@ -44,7 +44,7 @@ git access over ssh.
 ### DataCrunch.io
 
 [DataCrunch.io](https://datacrunch.io/) provides cheap on-demand computing servers with GPU resources.
-The fast.ai course provides a good summary of how to set up an account, see [here](https://course.fast.ai/start_datacrunch).
+The fast.ai course provides a good summary of how to set up an account, see [here](https://course19.fast.ai/start_datacrunch).
 The step 3 in the guide considers creating an SSH key, we already did that. For step 4, read key from `~/.ssh/id_ed25519.pub`.
 
 
